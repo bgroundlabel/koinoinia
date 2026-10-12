@@ -1,0 +1,62 @@
+# This is an auto-generated Django model module.
+# You'll have to do the following manually to clean this up:
+#   * Rearrange models' order
+#   * Make sure each model has one field with primary_key=True
+#   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
+#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
+# Feel free to rename the models, but don't rename db_table values or field names.
+from django.db import models
+
+
+class TMpiangona(models.Model):
+    id = models.BigAutoField(db_column='ID', primary_key=True, db_comment="Identifiant unique an'ny mpiangona. Tokana ihany ny an'ny mpiangona tsirairay, ary tsy miova mihitsy na dia maty aza izy, na nifindra fiangonana, sns.")  # Field name made lowercase.
+    numero = models.CharField(db_column='NUMERO', unique=True, max_length=20, blank=True, null=True, db_comment="Numéro entin'ny fiangonana manavaka ny mpiangona sy ny mpikambana tsirairay. Tsy automatique.")  # Field name made lowercase.
+    nom = models.CharField(db_column='NOM', max_length=200, db_comment='Nom de famille')  # Field name made lowercase.
+    prenoms = models.CharField(db_column='PRENOMS', max_length=200, blank=True, null=True, db_comment="Fanampin'anarana. Raha tsisy afa tsy anarana fotsiny, dia avela banga ito.")  # Field name made lowercase.
+    description = models.CharField(db_column='DESCRIPTION', max_length=255, blank=True, null=True, db_comment="Fanazavana fanampiny momba ilay mpiangona. Ohatra : ny andraikitra manokana sahaniny (Ben'ny tanàna, Filohan'ny Fokontany Anona, PS SPAA12  taloha, PS SPAA12 Amperinasa, sns.)")  # Field name made lowercase.
+    genre = models.ForeignKey('ParGenres', models.DO_NOTHING, db_column='GENRE_ID', blank=True, null=True, db_comment='Lahy sa vavy sa inona... Genre')  # Field name made lowercase.
+    nationalite = models.CharField(db_column='NATIONALITE', max_length=100, db_comment='Zom-pirenena')  # Field name made lowercase.
+    foyer = models.ForeignKey('TFoyers', models.DO_NOTHING, db_column='FOYER_ID', blank=True, null=True, db_comment='Idenfiant Tokantrano/foyer/ménage misy ilay mpiangona na mpikambana')  # Field name made lowercase.
+    date_naissance = models.DateField(db_column='DATE_NAISSANCE', blank=True, null=True, db_comment='Datinandro nahaterahana')  # Field name made lowercase.
+    lieu_naissance = models.CharField(db_column='LIEU_NAISSANCE', max_length=100, blank=True, null=True, db_comment='Toerana nahaterahana')  # Field name made lowercase.
+    pere_nom_complet = models.CharField(db_column='PERE_NOM_COMPLET', max_length=200, blank=True, null=True, db_comment='Nom complet du père')  # Field name made lowercase.
+    pere = models.ForeignKey('self', models.DO_NOTHING, db_column='PERE_ID', blank=True, null=True, db_comment="Identifiant du père, raha mpiangona ao amin'ny fitandremana izy")  # Field name made lowercase.
+    mere_nom_complet = models.CharField(db_column='MERE_NOM_COMPLET', max_length=200, blank=True, null=True, db_comment='Nom complet de la mère')  # Field name made lowercase.
+    mere = models.ForeignKey('self', models.DO_NOTHING, db_column='MERE_ID', related_name='tmpiangona_mere_set', blank=True, null=True, db_comment="Identifiant de la mère, raha mpiangona ao amin'ny Fitandremana izy")  # Field name made lowercase.
+    cin_id = models.CharField(db_column='CIN_ID', unique=True, max_length=100, blank=True, null=True, db_comment='Laharana kara-panondrom-pirenena CIN')  # Field name made lowercase.
+    cin_date = models.DateField(db_column='CIN_DATE', blank=True, null=True, db_comment='Date de délivrance de la CIN')  # Field name made lowercase.
+    cin_lieu = models.CharField(db_column='CIN_LIEU', max_length=100, blank=True, null=True, db_comment='Lieu de délivrance de la CIN')  # Field name made lowercase.
+    passeport_id = models.CharField(db_column='PASSEPORT_ID', unique=True, max_length=100, blank=True, null=True, db_comment="Laharan'ny pasipaoro manan-kery naseho tamin'ny fotoana nanaovana ny enregistrement")  # Field name made lowercase.
+    passeport_date = models.DateField(db_column='PASSEPORT_DATE', blank=True, null=True, db_comment='Date de délivrance du passeport')  # Field name made lowercase.
+    passeport_lieu = models.CharField(db_column='PASSEPORT_LIEU', max_length=100, blank=True, null=True, db_comment='Lieu de délivrance du passeport')  # Field name made lowercase.
+    tel1 = models.CharField(db_column='TEL1', max_length=20, blank=True, null=True, db_comment='Numéro téléphone, contact voalohany')  # Field name made lowercase.
+    tel2 = models.CharField(db_column='TEL2', max_length=20, blank=True, null=True, db_comment='Numéro téléphone, contact faharoa')  # Field name made lowercase.
+    sit_matr = models.ForeignKey('ParSitMatr', models.DO_NOTHING, db_column='SIT_MATR_ID', blank=True, null=True, db_comment='Situation matrimoniale : manambady, nisara-bady, maty vady, mpitovo, sns.')  # Field name made lowercase.
+    profession = models.CharField(db_column='PROFESSION', max_length=100, blank=True, null=True, db_comment="Anton'asa")  # Field name made lowercase.
+    fgn_taloha = models.CharField(db_column='FGN_TALOHA', max_length=100, blank=True, null=True, db_comment="Fiangonana nisy azy talohan'ny niaviany teto amin'ny Fitandremana. Ny anaran'ny fiangonana eto an-toerana ihany no atao eo raha efa teto foana izy hatry ny nahaterahany.")  # Field name made lowercase.
+    adresse = models.ForeignKey('TAdresses', models.DO_NOTHING, db_column='ADRESSE_ID', blank=True, null=True, db_comment="Identifiant an'ny adresse misy ilay mpiangona na mpikambana")  # Field name made lowercase.
+    faritra = models.ForeignKey('ParFgnFaritra', models.DO_NOTHING, db_column='FARITRA_ID', blank=True, null=True, db_comment='Vakim-paritra misy ilay mpiangona na mpikambana')  # Field name made lowercase.
+    est_envie = models.SmallIntegerField(db_column='EST_ENVIE', db_comment='Mbola velona ve sa tsia ?')  # Field name made lowercase.
+    est_actif = models.SmallIntegerField(db_column='EST_ACTIF', db_comment='Mbola manankery ve ito enregistrement ito ?')  # Field name made lowercase.
+    est_visible = models.SmallIntegerField(db_column='EST_VISIBLE', db_comment="Aseho ve (sa afenina) ito enregistrement ito ? Afenina no solon'ny suppression, fa tsy tokony hisy hofafaina mihitsy ny anarana nampidirina.")  # Field name made lowercase.
+    est_vitabatisa = models.SmallIntegerField(db_column='EST_VITABATISA', db_comment="Efa vita batisa ve ? Raha efa mpandray, dia efa vita batisa izy izay (talohan'ny nandraisana azy ho mpandray ny Fanasan'ny Tompo)")  # Field name made lowercase.
+    est_mpandray = models.SmallIntegerField(db_column='EST_MPANDRAY', db_comment="Efa mpandray ny Fanasan'ny Tompo ve ?")  # Field name made lowercase.
+    est_suspendu = models.SmallIntegerField(db_column='EST_SUSPENDU', db_comment="Nahato amin'ny maha mpandray ny Fanasan'ny Tompo azy ve ? (na inona na inona mety ho antony) ")  # Field name made lowercase.
+    est_zampielezana = models.SmallIntegerField(db_column='EST_ZAMPIELEZANA', db_comment='Zanaka am-pielezana ve ?')  # Field name made lowercase.
+    est_mpiandry = models.SmallIntegerField(db_column='EST_MPIANDRY', db_comment='Mpiandry ve ?')  # Field name made lowercase.
+    est_katekista = models.SmallIntegerField(db_column='EST_KATEKISTA', db_comment='Katekista ve ?')  # Field name made lowercase.
+    est_mpitoriteny = models.SmallIntegerField(db_column='EST_MPITORITENY', db_comment='Mpitoriteny ve ?')  # Field name made lowercase.
+    est_loholona = models.SmallIntegerField(db_column='EST_LOHOLONA', db_comment='Loholona ve ?')  # Field name made lowercase.
+    est_diakona = models.SmallIntegerField(db_column='EST_DIAKONA', db_comment='Diakona ve ?')  # Field name made lowercase.
+    est_mpitandrina = models.SmallIntegerField(db_column='EST_MPITANDRINA', db_comment='Mpitandrina ve ?')  # Field name made lowercase.
+    est_nympitandrina = models.SmallIntegerField(db_column='EST_NYMPITANDRINA', db_comment='Ny Mpitandrina amperinasa ve ?')  # Field name made lowercase.
+    est_stagiaire = models.SmallIntegerField(db_column='EST_STAGIAIRE', db_comment='Mpitandrina miza-draharaha mandritra ny fotoana voafetra ve ?')  # Field name made lowercase.
+    stage_periode = models.CharField(db_column='STAGE_PERIODE', max_length=255, blank=True, null=True, db_comment="Période de stage natao tao amin'ny fitandremana, raha efa nanao fizaran-draharaha amin'ny maha Mpitandrina, tao. Raha tsy izay, dia tsy fenoina io.")  # Field name made lowercase.
+    dkn_mpiahy = models.ForeignKey('TDiakonaMpiahyHdr', models.DO_NOTHING, db_column='DKN_MPIAHY_ID', blank=True, null=True, db_comment="Identifiant an'ny Ekipa Diakona Mpiahy azy (HDR_ID)")  # Field name made lowercase.
+    created_at = models.DateTimeField(db_column='CREATED_AT', db_comment="Date système de création de cet enregistrement (à des fins d'audit)")  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 't_mpiangona'
+        unique_together = (('nom', 'prenoms'),)
+        db_table_comment = 'Lisitry ny mpiangona sy ny mpikambana'
